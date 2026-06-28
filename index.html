@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Stash | Essah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:    #060f1d;
+  --bg2:   #081527;
+  --w:     #ffffff;
+  --w70:   rgba(255,255,255,0.7);
+  --w30:   rgba(255,255,255,0.3);
+  --w10:   rgba(255,255,255,0.1);
+  --w05:   rgba(255,255,255,0.05);
+  --w02:   rgba(255,255,255,0.025);
+  --lime:  #c6f135;
+  --cyan:  #00e5ff;
+  --coral: #ff4d6d;
+  --amber: #ffb830;
+  --violet:#b388ff;
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+  --mono:  'DM Mono', monospace;
+  --ease:  cubic-bezier(0.16,1,0.3,1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w);font-family:var(--sans);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:var(--bg)}
+
+#bar{position:fixed;top:0;left:0;height:2px;width:0;background:var(--lime);z-index:999;transition:width 0.06s linear}
+.w{max-width:1160px;margin:0 auto;padding:0 3rem}
+
+nav{position:sticky;top:0;z-index:200;background:rgba(6,15,29,0.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--w05)}
+.nav-inner{position:relative;display:flex;align-items:center;justify-content:center;height:58px}
+.nav-logo{position:absolute;left:-40px;top:50%;transform:translateY(-50%);display:inline-flex;align-items:center;gap:4px;min-height:58px;padding-right:16px}
+.nav-logo-dot{width:8px;height:8px;border-radius:999px;background:var(--lime)}
+.nav-logo-label{font:700 9.5px/1 var(--sans);letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.45)}
+.nav-back{font-family:var(--mono);font-size:9.5px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);padding:0.4rem 0.85rem;border-radius:3px;transition:color 0.15s;position:absolute;right:-40px;top:50%;transform:translateY(-50%)}
+.nav-back:hover{color:var(--w)}
+
+.header{padding:2.5rem 0 2rem;border-bottom:1px solid var(--w10);display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem}
+.header-name{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:400;line-height:0.9;letter-spacing:-0.02em;opacity:0;animation:up 0.7s var(--ease) 0.06s forwards}
+.header-right{text-align:right;opacity:0;animation:up 0.6s var(--ease) 0.14s forwards}
+.header-role{font-family:var(--mono);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:0.35rem}
+.header-meta{display:flex;align-items:center;justify-content:flex-end;gap:0.5rem;font-family:var(--mono);font-size:0.58rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--w30)}
+.header-meta-dot{width:4px;height:4px;border-radius:50%;background:var(--w30)}
+
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:2px;padding:2px 0;background:var(--w02)}
+
+.cell{
+  --accent:var(--lime);
+  --accent-ink:var(--bg);
+  background:var(--bg);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:1.6rem 1.8rem;min-height:220px;
+  text-decoration:none;color:inherit;
+  transition:background 0.32s var(--ease),color 0.32s var(--ease);
+}
+.cell:hover{background:var(--accent);color:var(--accent-ink)}
+.cell:hover .cell-title,.cell:hover .cell-tag,.cell:hover .cell-desc{color:var(--accent-ink)}
+.cell:hover .cell-num{color:var(--accent-ink);opacity:0.14}
+
+.c1{--accent:var(--cyan);--accent-ink:var(--bg)}
+.c2{--accent:var(--amber);--accent-ink:var(--bg)}
+.c3{--accent:var(--coral);--accent-ink:#fff}
+
+.cell-num{position:absolute;top:1rem;right:1.2rem;font-family:var(--serif);font-size:5rem;font-style:italic;line-height:1;color:var(--w);opacity:0.04;transition:opacity 0.3s;pointer-events:none;user-select:none}
+.cell-tag{font-family:var(--mono);font-size:0.5rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:0.55rem;position:relative;z-index:1}
+.c1 .cell-tag{color:var(--cyan)}
+.c2 .cell-tag{color:var(--amber)}
+.c3 .cell-tag{color:var(--coral)}
+.cell-title{font-family:var(--serif);font-size:clamp(1.5rem,2.8vw,2.6rem);font-weight:400;line-height:0.95;letter-spacing:-0.02em;color:var(--w);margin-bottom:0.6rem;position:relative;z-index:1}
+.cell-desc{font-size:0.75rem;font-weight:300;color:var(--w70);line-height:1.65;position:relative;z-index:1;max-width:340px}
+
+/* Layout — 01 spans 5/12 cols (~42%), others share the remaining 7 */
+.cell-1{grid-column:1/6;grid-row:1/3;min-height:440px}
+.cell-1 .cell-title{font-size:clamp(2rem,3.5vw,3.2rem)}
+.cell-2{grid-column:6/13;grid-row:1/2}
+.cell-3{grid-column:6/13;grid-row:2/3}
+
+.cell-1{opacity:0;animation:up 0.6s var(--ease) 0.30s forwards}
+.cell-2{opacity:0;animation:up 0.6s var(--ease) 0.38s forwards}
+.cell-3{opacity:0;animation:up 0.6s var(--ease) 0.46s forwards}
+
+footer{background:var(--bg2);border-top:1px solid var(--w05);padding:1.5rem 0}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:1rem;color:var(--w30);font-family:var(--mono);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase}
+
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+  .nav-back{display:none}
+  .header{grid-template-columns:1fr}
+  .header-right{text-align:left}
+  .header-meta{justify-content:flex-start}
+  .grid{grid-template-columns:repeat(6,1fr)}
+  .cell-1{grid-column:1/7;grid-row:1/2;min-height:300px}
+  .cell-2{grid-column:1/4;grid-row:2/3}
+  .cell-3{grid-column:4/7;grid-row:2/3}
+}
+@media(max-width:540px){
+  .w{padding:0 1.5rem}
+  .header{padding:2rem 0 1.5rem}
+  .grid{grid-template-columns:1fr 1fr}
+  .cell-1{grid-column:1/3;min-height:260px}
+  .cell-2,.cell-3{grid-column:span 1}
+}
+</style>
+</head>
+<body>
+<div id="bar"></div>
+
+<nav>
+  <div class="w">
+    <div class="nav-inner">
+      <a class="nav-logo" href="../index.html">
+        <span class="nav-logo-dot" aria-hidden="true"></span>
+        <span class="nav-logo-label">Portfolio</span>
+      </a>
+      <a class="nav-back" href="../index.html">← All Projects</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="w">
+    <header class="header">
+      <h1 class="header-name">Stash</h1>
+      <div class="header-right">
+        <div class="header-role">Sports Markets · Conversion</div>
+        <div class="header-meta">
+          <span>3 Landing Pages</span>
+          <span class="header-meta-dot"></span>
+          <span>Live Football</span>
+          <span class="header-meta-dot"></span>
+          <span>Growth</span>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <div class="grid w" id="pages">
+
+    <a class="cell c1 cell-1" href="v1.html">
+      <span class="cell-num" aria-hidden="true">01</span>
+      <span class="cell-tag">Landing Page</span>
+      <div class="cell-title">Know The Game</div>
+      <p class="cell-desc">High-conviction launch page built around football knowledge becoming a tradable position.</p>
+    </a>
+
+    <a class="cell c2 cell-2" href="v2.html">
+      <span class="cell-num" aria-hidden="true">02</span>
+      <span class="cell-tag">Landing Page</span>
+      <div class="cell-title">Trade Your Read</div>
+      <p class="cell-desc">Market-terminal direction with live-tape energy, price movement, and visible liquidity.</p>
+    </a>
+
+    <a class="cell c3 cell-3" href="v3.html">
+      <span class="cell-num" aria-hidden="true">03</span>
+      <span class="cell-tag">Landing Page</span>
+      <div class="cell-title">Long Your Team</div>
+      <p class="cell-desc">Fan-first route that turns club loyalty into open markets and clear action.</p>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <div class="w">
+    <div class="foot">
+      <span>Essah</span>
+      <span>Stash</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',function(){
+  var b=document.getElementById('bar');
+  var s=document.body.scrollHeight-window.innerHeight;
+  b.style.width=(s>0?(window.scrollY/s)*100:0)+'%';
+});
+</script>
+</body>
+</html>
