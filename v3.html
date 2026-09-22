@@ -24,19 +24,14 @@
         --bg2: #080d1a;
         --bg3: #0c1225;
         --panel: rgba(12, 18, 37, 0.7);
-        --panel2: rgba(16, 24, 48, 0.6);
         --border: rgba(57, 255, 20, 0.12);
         --border2: rgba(255, 255, 255, 0.06);
         --neon: #39ff14;
         --neon-dim: rgba(57, 255, 20, 0.15);
         --neon-glow: rgba(57, 255, 20, 0.3);
         --cyan: #23e8ff;
-        --cyan-dim: rgba(35, 232, 255, 0.16);
-        --pink: #ff4040;
-        --pink2: #ff6a6a;
         --pink-glow: rgba(255, 64, 64, 0.28);
         --red: #ff4040;
-        --blue: #3d8bff;
         --white: #e8eeff;
         --muted: #6b7aa8;
         --muted2: #3d4d72;
@@ -2306,8 +2301,21 @@
         }
       }
     </style>
+    <!-- Version switcher (V1/V2/V3) — safe to delete this whole block, plus the .version-switcher markup in <body>, to remove it -->
+    <style>
+      .version-switcher{position:fixed;bottom:20px;right:20px;z-index:300;display:flex;gap:6px;padding:6px;background:var(--panel);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--border);border-radius:999px;font-family:var(--font-body)}
+      .version-switcher a,.version-switcher span{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:28px;padding:0 10px;border-radius:999px;border:1px solid transparent;color:var(--muted);font-size:12px;font-weight:600;text-decoration:none;transition:background .15s,border-color .15s,color .15s}
+      .version-switcher a:hover{color:var(--white);border-color:var(--neon-dim)}
+      .version-switcher .is-active{background:var(--neon-dim);border-color:var(--neon);color:var(--neon);cursor:default}
+    </style>
   </head>
   <body>
+    <!-- Version switcher (V1/V2/V3) -->
+    <div class="version-switcher" role="navigation" aria-label="Site version switcher">
+      <a href="https://moeessah.github.io/stash/v1.html">V1</a>
+      <a href="https://moeessah.github.io/stash/v2.html">V2</a>
+      <span class="is-active" aria-current="page">V3</span>
+    </div>
     <div id="spotlight"></div>
     <div class="aurora">
       <div class="aurora-blob a1"></div>
@@ -2317,7 +2325,7 @@
 
     <!-- NAV -->
     <nav>
-      <a href="index.html" class="nav-logo" style="text-decoration: none">stash<span>.</span></a>
+      <a href="https://moeessah.github.io/portfolio/" class="nav-logo" style="text-decoration: none">stash<span>.</span></a>
       <div class="nav-links">
         <a href="#markets">Markets</a>
         <a href="#why">How It Works</a>
@@ -2815,52 +2823,52 @@
           <span class="tick-badge">BHA</span><span class="tick-price">$117.23</span
           ><span class="tick-chg up">+0.66%</span>
         </div>
-        <!-- DUPE -->
-        <div class="tick-item">
+        <!-- duplicate set, hidden from assistive tech, closes the loop for the marquee -->
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">ARS</span><span class="tick-price">$305.95</span
           ><span class="tick-chg up">+3.24%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">MCI</span><span class="tick-price">$219.75</span
           ><span class="tick-chg dn">-1.18%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">LIV</span><span class="tick-price">$166.26</span
           ><span class="tick-chg up">+2.01%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">CHE</span><span class="tick-price">$111.12</span
           ><span class="tick-chg dn">-0.87%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">MUN</span><span class="tick-price">$202.74</span
           ><span class="tick-chg up">+1.55%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">NEW</span><span class="tick-price">$121.27</span
           ><span class="tick-chg up">+0.44%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">AVL</span><span class="tick-price">$209.48</span
           ><span class="tick-chg up">+4.12%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">BAR</span><span class="tick-price">$245.08</span
           ><span class="tick-chg up">+1.93%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">RMA</span><span class="tick-price">$198.58</span
           ><span class="tick-chg dn">-0.34%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">ATM</span><span class="tick-price">$213.28</span
           ><span class="tick-chg up">+2.77%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">BOU</span><span class="tick-price">$142.83</span
           ><span class="tick-chg dn">-1.04%</span>
         </div>
-        <div class="tick-item">
+        <div class="tick-item" aria-hidden="true">
           <span class="tick-badge">BHA</span><span class="tick-price">$117.23</span
           ><span class="tick-chg up">+0.66%</span>
         </div>

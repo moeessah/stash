@@ -44,7 +44,6 @@
         --n4: #1a2d58;
         --lime: #d4f53c;
         --lg: rgba(212, 245, 60, 0.25);
-        --ld: rgba(212, 245, 60, 0.07);
         --cyan: #22d3ee;
         --coral: #f4604a;
         --gold: #ffaa00;
@@ -2183,8 +2182,21 @@
         }
       }
     </style>
+    <!-- Version switcher (V1/V2/V3) — safe to delete this whole block, plus the .version-switcher markup in <body>, to remove it -->
+    <style>
+      .version-switcher{position:fixed;bottom:20px;right:20px;z-index:900;display:flex;gap:6px;padding:6px;background:rgba(4,9,26,.8);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--b1);border-radius:999px;font-family:var(--fb)}
+      .version-switcher a,.version-switcher span{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:28px;padding:0 10px;border-radius:999px;border:1px solid transparent;color:var(--muted);font-size:12px;font-weight:600;text-decoration:none;transition:background .15s,border-color .15s,color .15s}
+      .version-switcher a:hover{color:var(--off);border-color:var(--b2)}
+      .version-switcher .is-active{background:var(--lg);border-color:var(--lime);color:var(--lime);cursor:default}
+    </style>
   </head>
   <body>
+    <!-- Version switcher (V1/V2/V3) -->
+    <div class="version-switcher" role="navigation" aria-label="Site version switcher">
+      <span class="is-active" aria-current="page">V1</span>
+      <a href="https://moeessah.github.io/stash/v2.html">V2</a>
+      <a href="https://moeessah.github.io/stash/v3.html">V3</a>
+    </div>
     <div id="dot"></div>
     <div id="ring"></div>
     <div class="page-scrollbar" id="pageScrollbar" aria-hidden="true">
@@ -2193,7 +2205,7 @@
     </div>
 
     <nav>
-      <a href="index.html" style="text-decoration: none"
+      <a href="https://moeessah.github.io/portfolio/" style="text-decoration: none"
         ><div class="logo">
           <div class="logo-dot"></div>
           STASH
